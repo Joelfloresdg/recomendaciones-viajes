@@ -1,19 +1,15 @@
 from flask import Flask, render_template, request, redirect
-import psycopg2
-import os
+import sqlite3
 
 app = Flask(__name__)
 
-# Conexión a PostgreSQL usando DATABASE_URL de Render
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-# Crear la tabla si no existe
+# Crear la base de datos si no existe
 def init_db():
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = sqlite3.connect('viajes.db')
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS recomendaciones (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             destino TEXT,
             descripcion TEXT,
             enlace TEXT
@@ -24,10 +20,10 @@ def init_db():
 
 init_db()
 
-# Ruta principal: mostrar recomendaciones
+# Ruta principal
 @app.route('/')
 def index():
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = sqlite3.connect('viajes.db')
     c = conn.cursor()
     c.execute('SELECT * FROM recomendaciones')
     recomendaciones = c.fetchall()
@@ -42,9 +38,9 @@ def add():
         descripcion = request.form['descripcion']
         enlace = request.form['enlace']
 
-        conn = psycopg2.connect(DATABASE_URL)
+        conn = sqlite3.connect('viajes.db')
         c = conn.cursor()
-        c.execute('INSERT INTO recomendaciones (destino, descripcion, enlace) VALUES (%s, %s, %s)',
+        c.execute('INSERT INTO recomendaciones (destino, descripcion, enlace) VALUES (?, ?, ?)',
                   (destino, descripcion, enlace))
         conn.commit()
         conn.close()
@@ -55,27 +51,12 @@ def add():
 # Ruta para eliminar recomendación
 @app.route('/delete/<int:id>')
 def delete(id):
-    conn = psycopg2.connect(DATABASE_URL)
+    conn = sqlite3.connect('viajes.db')
     c = conn.cursor()
-    c.execute('DELETE FROM recomendaciones WHERE id=%s', (id,))
+    c.execute('DELETE FROM recomendaciones WHERE id=?', (id,))
     conn.commit()
     conn.close()
     return redirect('/')
 
-# Ruta para ver datos crudos (para pruebas)
-@app.route('/verdb')
-def verdb():
-    conn = psycopg2.connect(DATABASE_URL)
-    c = conn.cursor()
-    c.execute('SELECT * FROM recomendaciones')
-    data = c.fetchall()
-    conn.close()
-    return str(data)
-
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=81, debug=True)
-
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=81, debug=True)
-
