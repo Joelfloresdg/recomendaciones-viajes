@@ -8,8 +8,9 @@ body {
 }
 
 header {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-bottom: 20px; /* Agregamos separación hacia abajo */
 }
 
 h1 {
