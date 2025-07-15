@@ -8,9 +8,12 @@ body {
 }
 
 header {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    margin-bottom: 20px; /* Agregamos separación hacia abajo */
+  margin-bottom: 20px;  /* separa el botón de abajo */
+  padding: 20px;
+}
+.boton-contenedor {
+  display: block;
+  margin-top: 10px;
 }
 
 h1 {
