@@ -1,1 +1,3 @@
-flask
+git add requirements.txt
+git commit -m "Agrego psycopg2-binary al requirements.txt"
+git push
