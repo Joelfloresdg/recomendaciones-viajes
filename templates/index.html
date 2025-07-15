@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Recomendaciones de Viajes</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>🌍 Recomendaciones de Viajes 🌍</h1>
+        <a href="/add" class="boton">Agregar Recomendación</a>
+    </header>
+
+    <section class="contenedor">
+        {% for r in recomendaciones %}
+            <div class="card">
+                <h2>{{ r[1] }}</h2>
+                <p>{{ r[2] }}</p>
+                <a href="{{ r[3] }}" target="_blank" class="link">Ver más</a>
+                <a href="/delete/{{ r[0] }}" class="eliminar">Eliminar</a>
+            </div>
+        {% endfor %}
+    </section>
+
+    <footer>
+        <p>Materia: Conceptualización de servicios en la nube</p>
+        <p>Nombre: Joel Flores Flores</p>
+        <p>Código: 225385683</p>
+        <p>Correo: joel.flores8568@alumnos.udg.mx</p>
+    </footer>
+</body>
+</html>

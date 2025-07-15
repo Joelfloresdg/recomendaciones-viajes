@@ -1,0 +1,86 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-radius: 15px;
+  width: 300px;
+  margin: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: #00c6ff;
+  display: block;
+  margin-top: 10px;
+}
+
+.eliminar {
+  color: red;
+  text-decoration: none;
+  margin-top: 5px;
+  display: block;
+}
+
+.boton, .volver, button {
+  background: #fff;
+  color: #00c6ff;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 25px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.formulario input, .formulario textarea {
+  width: 80%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+@media (max-width: 600px) {
+  .card {
+      width: 90%;
+  }
+  footer {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      color: #fff;
+      margin-top: 30px;
+      font-size: 14px;
+  }
+}
+
